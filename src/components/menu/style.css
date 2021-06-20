@@ -1,0 +1,30 @@
+.sidebar {
+  background: #fff;
+  width: 100%;
+  height: 100vh;
+}
+.header-sidebar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding-top: 40px;
+}
+
+.header-division {
+  width: 2px;
+  height: 35px;
+  background: #D4D4D4;
+  margin-right: 20px;
+}
+
+.img-sidebar {
+  width: 40px;
+  margin-right: 20px;
+}
+
+.header-name {
+  color: #FE810EB3;
+  font-size: 20px;
+  font-weight: bold;
+}
