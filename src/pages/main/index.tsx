@@ -2,8 +2,6 @@ import Menu from '../../components/menu'
 
 import './style.css'
 
-
-
 function Main() {
   return (
     <div className="page-main">
