@@ -5,10 +5,13 @@ import { AuthProvider } from './contexts/AuthContext';
 
 import './global.css'
 
+export const history = createBrowserHistory();
+
 function App() {
+  
   return (
     <AuthProvider>
-      <Router history={createBrowserHistory()}>
+      <Router history={history}>
         <Routes />
       </Router>
     </AuthProvider>
