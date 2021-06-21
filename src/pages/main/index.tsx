@@ -8,7 +8,7 @@ function Main() {
       <div>
         <Menu />
       </div>
-      <h1>Aqui outro contudo</h1>
+      <h1 className="teste" >Aqui outro contudo</h1>
     </div>
   )
 }

@@ -43,7 +43,7 @@ input {
   opacity: 1;
 }
 
-button {
+.btn-login {
   background-image: linear-gradient(to right, #FF512F 0%, #F09819  51%, #FF512F  100%);
   width: 80%;
   margin: 10px;
@@ -63,7 +63,7 @@ button {
   text-decoration: none;
  }
 
-button:hover {
+.btn-login:hover {
   background-position: center; 
   color: #fff;
   text-decoration: none;
