@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { RiSettings4Fill, RiDeleteBin2Line, RiEditBoxLine, RiCheckboxCircleLine, RiCloseCircleLine, RiUserAddLine } from 'react-icons/ri';
+import { history } from '../../App';
 import Modal, { ModalHeader, ModalBody, ModalFooter, useModal } from '../../components/modal';
 import { userData, nivelAcesso, Context } from '../../contexts/AuthContext'
 import Menu from '../../components/menu'
@@ -26,6 +27,11 @@ function Management() {
     
     const email = localStorage.getItem('email');
     setActiveUser(email);
+
+    const nivel = localStorage.getItem('nivel_acesso');
+    if (nivel !== nivelAcesso.ADMINISTRADOR) {
+      history.push('/main');
+    }
   }, []);
 
   async function loadData() {
