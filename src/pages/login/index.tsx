@@ -12,7 +12,7 @@ function Login() {
 
     if (token) {
       history.push("/main");
-      alert(`Usuário com Login ainda Ativo.\nClique em SAIR para deslogar e acessar a tela de Login novamente.`)
+      alert(`Usuário com Login ainda Ativo.\nClique em LOGOUT para deslogar e acessar a tela de Login novamente.`)
     }
   }, []);
 

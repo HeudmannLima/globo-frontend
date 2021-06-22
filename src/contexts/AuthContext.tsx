@@ -2,6 +2,18 @@ import React, { createContext, useState, FC, BaseSyntheticEvent, useEffect } fro
 import api from '../services/api';  
 import { history } from '../App';
 
+
+export enum nivelAcesso {
+  FUNCIONARIO = 'funcionario',
+  ADMINISTRADOR = 'administrador',
+}
+
+export interface userData {
+  _id: string,
+  email: string;
+  nivel_acesso: string;
+}
+
 interface IContextProps {
   authenticated: boolean;
   handleLogin: (event: BaseSyntheticEvent) => {};
@@ -18,7 +30,7 @@ const AuthProvider: FC = ({ children }) => {
     const token = localStorage.getItem('token');
 
     if (token) {
-      api.defaults.headers.Authorization = `Bearer ${JSON.stringify(token)}`;
+      api.apiBackend.defaults.headers.Authorization = `Bearer ${JSON.stringify(token)}`;
       setAuthenticated(true);
     }
 
@@ -39,16 +51,19 @@ const AuthProvider: FC = ({ children }) => {
     };
 
     try {
-      const userAuthorizedData = await api.post('/login', data);
+      const userAuthorizedData = await api.apiBackend.post('/login', data);
 
-      if (userAuthorizedData.data) {
-        const { token } = userAuthorizedData.data;
+      if (userAuthorizedData.data) {       
+        const { token, email, nivel_acesso } = userAuthorizedData.data;
         
         localStorage.setItem('token', JSON.stringify(token))
-        api.defaults.headers.Authorization = `Bearer ${token}`;
-        setAuthenticated(true);
-        history.push('/main');
+        api.apiBackend.defaults.headers.Authorization = `Bearer ${token}`;
 
+        localStorage.setItem('email', email);
+        localStorage.setItem('nivel_acesso', nivel_acesso);
+        setAuthenticated(true);
+
+        history.push('/main');
       } else {
         handleLoginError();
         setAuthenticated(false);
@@ -63,9 +78,11 @@ const AuthProvider: FC = ({ children }) => {
   async function handleLogout() {
     setAuthenticated(false);
     localStorage.removeItem('token');
-    api.defaults.headers.Authorization = undefined;
+    localStorage.removeItem('email');
+    localStorage.removeItem('nivel_acesso');
+    api.apiBackend.defaults.headers.Authorization = undefined;
     history.push('/');
-    await api.post('/logout');  
+    await api.apiBackend.post('/logout');  
   }
 
   if (loading) {

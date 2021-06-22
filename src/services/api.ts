@@ -1,7 +1,11 @@
 import axios from 'axios';
 
-const api = axios.create({
+const apiChart = axios.create({
+  baseURL: 'https://run.mocky.io',
+});
+
+const apiBackend = axios.create({
   baseURL: 'http://localhost:3333',
 });
 
-export default api;
+export default { apiBackend, apiChart };
